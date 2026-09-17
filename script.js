@@ -1,6 +1,11 @@
-// Tasa fija: $1.00 USD = C$ 40.00 NIO
-const EXCHANGE_RATE = 40.00;
+// Tasa fija ajustada: $0.99 USD = C$ 40.00 NIO (Tasa por dólar: 40.4040 NIO)
+const EXCHANGE_RATE = 40.00 / 0.99;
 const RECEIVER_WHATSAPP = "50588385491";
+
+// Función auxiliar para redondear a precios limpios en córdobas
+function usdToNio(usd) {
+    return Math.round(usd * EXCHANGE_RATE);
+}
 
 const baseCatalog = [
     {
@@ -9,15 +14,15 @@ const baseCatalog = [
         category: "juegos",
         logo: "logo-free-fire.png",
         packages: [
-            { name: "100 + 10 Diamantes", usdPrice: 1.20 },
-            { name: "310 + 31 Diamantes", usdPrice: 3.50 },
-            { name: "520 + 52 Diamantes", usdPrice: 5.50 },
-            { name: "1,060 + 106 Diamantes", usdPrice: 10.50 },
-            { name: "2,180 + 218 Diamantes", usdPrice: 21.00 },
-            { name: "5,600 + 560 Diamantes", usdPrice: 52.00 },
-            { name: "Pase Nivelación", usdPrice: 3.00 },
-            { name: "Tarjeta Semanal", usdPrice: 2.20 },
-            { name: "Tarjeta Mensual", usdPrice: 10.00 }
+            { name: "100 + 10 Diamantes", usdPrice: 0.99 },
+            { name: "310 + 31 Diamantes", usdPrice: 2.99 },
+            { name: "520 + 52 Diamantes", usdPrice: 4.99 },
+            { name: "1,060 + 106 Diamantes", usdPrice: 9.99 },
+            { name: "2,180 + 218 Diamantes", usdPrice: 19.99 },
+            { name: "5,600 + 560 Diamantes", usdPrice: 49.99 },
+            { name: "Pase Nivelación", usdPrice: 2.99 },
+            { name: "Tarjeta Semanal", usdPrice: 1.99 },
+            { name: "Tarjeta Mensual", usdPrice: 9.99 }
         ]
     },
     {
@@ -26,15 +31,15 @@ const baseCatalog = [
         category: "juegos",
         logo: "logo-mobile-legends.png",
         packages: [
-            { name: "11 Diamantes", usdPrice: 0.30 },
-            { name: "56 Diamantes", usdPrice: 1.10 },
-            { name: "86 Diamantes", usdPrice: 1.80 },
-            { name: "256 + 40 Diamantes", usdPrice: 5.00 },
-            { name: "514 + 88 Diamantes", usdPrice: 10.00 },
-            { name: "706 + 133 Diamantes", usdPrice: 14.00 },
-            { name: "2,195 + 368 Diamantes", usdPrice: 42.00 },
-            { name: "Pase Semanal de Diamantes", usdPrice: 2.20 },
-            { name: "Pase Crepúsculo (Twilight Pass)", usdPrice: 10.00 }
+            { name: "11 Diamantes", usdPrice: 0.25 },
+            { name: "56 Diamantes", usdPrice: 0.99 },
+            { name: "86 Diamantes", usdPrice: 1.49 },
+            { name: "256 + 40 Diamantes", usdPrice: 4.99 },
+            { name: "514 + 88 Diamantes", usdPrice: 9.99 },
+            { name: "706 + 133 Diamantes", usdPrice: 12.99 },
+            { name: "2,195 + 368 Diamantes", usdPrice: 39.99 },
+            { name: "Pase Semanal de Diamantes", usdPrice: 1.99 },
+            { name: "Pase Crepúsculo (Twilight Pass)", usdPrice: 9.99 }
         ]
     },
     {
@@ -43,12 +48,12 @@ const baseCatalog = [
         category: "juegos",
         logo: "logo-pubg-mobile.png",
         packages: [
-            { name: "60 UC", usdPrice: 1.10 },
-            { name: "325 UC", usdPrice: 5.20 },
-            { name: "660 UC", usdPrice: 10.50 },
-            { name: "1,800 UC", usdPrice: 26.00 },
-            { name: "3,850 UC", usdPrice: 52.00 },
-            { name: "8,100 UC", usdPrice: 105.00 }
+            { name: "60 UC", usdPrice: 0.99 },
+            { name: "325 UC", usdPrice: 4.99 },
+            { name: "660 UC", usdPrice: 9.99 },
+            { name: "1,800 UC", usdPrice: 24.99 },
+            { name: "3,850 UC", usdPrice: 49.99 },
+            { name: "8,100 UC", usdPrice: 99.99 }
         ]
     },
     {
@@ -57,12 +62,12 @@ const baseCatalog = [
         category: "juegos",
         logo: "logo-cod-mobile.png",
         packages: [
-            { name: "80 CP", usdPrice: 1.20 },
-            { name: "420 CP", usdPrice: 5.50 },
-            { name: "880 CP", usdPrice: 11.00 },
-            { name: "2,400 CP", usdPrice: 26.00 },
-            { name: "5,000 CP", usdPrice: 52.00 },
-            { name: "10,800 CP", usdPrice: 105.00 }
+            { name: "80 CP", usdPrice: 0.99 },
+            { name: "420 CP", usdPrice: 4.99 },
+            { name: "880 CP", usdPrice: 9.99 },
+            { name: "2,400 CP", usdPrice: 24.99 },
+            { name: "5,000 CP", usdPrice: 49.99 },
+            { name: "10,800 CP", usdPrice: 99.99 }
         ]
     },
     {
@@ -71,13 +76,13 @@ const baseCatalog = [
         category: "juegos",
         logo: "logo-genshin-impact.png",
         packages: [
-            { name: "Bendición de la Luna Welkin", usdPrice: 5.50 },
-            { name: "60 Cristales Génesis", usdPrice: 1.20 },
-            { name: "300 + 30 Cristales Génesis", usdPrice: 5.50 },
-            { name: "980 + 110 Cristales Génesis", usdPrice: 16.50 },
-            { name: "1,980 + 260 Cristales Génesis", usdPrice: 32.00 },
-            { name: "3,280 + 600 Cristales Génesis", usdPrice: 52.00 },
-            { name: "6,480 + 1,600 Cristales Génesis", usdPrice: 105.00 }
+            { name: "Bendición de la Luna Welkin", usdPrice: 4.99 },
+            { name: "60 Cristales Génesis", usdPrice: 0.99 },
+            { name: "300 + 30 Cristales Génesis", usdPrice: 4.99 },
+            { name: "980 + 110 Cristales Génesis", usdPrice: 14.99 },
+            { name: "1,980 + 260 Cristales Génesis", usdPrice: 29.99 },
+            { name: "3,280 + 600 Cristales Génesis", usdPrice: 49.99 },
+            { name: "6,480 + 1,600 Cristales Génesis", usdPrice: 99.99 }
         ]
     },
     {
@@ -86,13 +91,13 @@ const baseCatalog = [
         category: "juegos",
         logo: "logo-honor-of-kings.png",
         packages: [
-            { name: "80 + 8 Fichas", usdPrice: 1.20 },
-            { name: "240 + 24 Fichas", usdPrice: 3.50 },
-            { name: "400 + 40 Fichas", usdPrice: 5.50 },
-            { name: "800 + 80 Fichas", usdPrice: 11.00 },
-            { name: "1,200 + 120 Fichas", usdPrice: 16.50 },
-            { name: "2,400 + 240 Fichas", usdPrice: 32.00 },
-            { name: "4,000 + 400 Fichas", usdPrice: 52.00 }
+            { name: "80 + 8 Fichas", usdPrice: 0.99 },
+            { name: "240 + 24 Fichas", usdPrice: 2.99 },
+            { name: "400 + 40 Fichas", usdPrice: 4.99 },
+            { name: "800 + 80 Fichas", usdPrice: 9.99 },
+            { name: "1,200 + 120 Fichas", usdPrice: 14.99 },
+            { name: "2,400 + 240 Fichas", usdPrice: 29.99 },
+            { name: "4,000 + 400 Fichas", usdPrice: 49.99 }
         ]
     },
     {
@@ -101,12 +106,12 @@ const baseCatalog = [
         category: "juegos",
         logo: "logo-roblox.png",
         packages: [
-            { name: "80 Robux", usdPrice: 1.20 },
-            { name: "400 Robux", usdPrice: 5.50 },
-            { name: "800 Robux", usdPrice: 11.00 },
-            { name: "1,700 Robux", usdPrice: 22.00 },
-            { name: "4,500 Robux", usdPrice: 52.00 },
-            { name: "10,000 Robux", usdPrice: 105.00 }
+            { name: "80 Robux", usdPrice: 0.99 },
+            { name: "400 Robux", usdPrice: 4.99 },
+            { name: "800 Robux", usdPrice: 9.99 },
+            { name: "1,700 Robux", usdPrice: 19.99 },
+            { name: "4,500 Robux", usdPrice: 49.99 },
+            { name: "10,000 Robux", usdPrice: 99.99 }
         ]
     },
     {
@@ -115,12 +120,12 @@ const baseCatalog = [
         category: "juegos",
         logo: "logo-blood-strike.png",
         packages: [
-            { name: "100 + 10 Oro", usdPrice: 1.10 },
-            { name: "300 + 30 Oro", usdPrice: 3.20 },
-            { name: "500 + 50 Oro", usdPrice: 5.20 },
-            { name: "1,000 + 100 Oro", usdPrice: 10.50 },
-            { name: "2,000 + 200 Oro", usdPrice: 21.00 },
-            { name: "5,000 + 500 Oro", usdPrice: 52.00 }
+            { name: "100 + 10 Oro", usdPrice: 0.99 },
+            { name: "300 + 30 Oro", usdPrice: 2.99 },
+            { name: "500 + 50 Oro", usdPrice: 4.99 },
+            { name: "1,000 + 100 Oro", usdPrice: 9.99 },
+            { name: "2,000 + 200 Oro", usdPrice: 19.99 },
+            { name: "5,000 + 500 Oro", usdPrice: 49.99 }
         ]
     },
     {
@@ -129,14 +134,14 @@ const baseCatalog = [
         category: "juegos",
         logo: "logo-clash-royale.png",
         packages: [
-            { name: "80 Gemas", usdPrice: 1.20 },
-            { name: "500 Gemas", usdPrice: 5.50 },
-            { name: "1,200 Gemas", usdPrice: 11.00 },
-            { name: "2,500 Gemas", usdPrice: 22.00 },
-            { name: "6,500 Gemas", usdPrice: 52.00 },
-            { name: "14,000 Gemas", usdPrice: 105.00 },
-            { name: "Pass Royale (Oro)", usdPrice: 6.50 },
-            { name: "Pass Royale (Diamante)", usdPrice: 13.00 }
+            { name: "80 Gemas", usdPrice: 0.99 },
+            { name: "500 Gemas", usdPrice: 4.99 },
+            { name: "1,200 Gemas", usdPrice: 9.99 },
+            { name: "2,500 Gemas", usdPrice: 19.99 },
+            { name: "6,500 Gemas", usdPrice: 49.99 },
+            { name: "14,000 Gemas", usdPrice: 99.99 },
+            { name: "Pass Royale (Oro)", usdPrice: 5.99 },
+            { name: "Pass Royale (Diamante)", usdPrice: 11.99 }
         ]
     },
     {
@@ -159,8 +164,8 @@ const baseCatalog = [
         category: "streaming",
         logo: "logo-netflix.png",
         packages: [
-            { name: "Perfil 1 Mes (HD/4K)", usdPrice: 3.50 },
-            { name: "Cuenta Completa 1 Mes (4 Pantallas)", usdPrice: 10.00 },
+            { name: "Perfil 1 Mes (HD/4K)", usdPrice: 2.99 },
+            { name: "Cuenta Completa 1 Mes (4 Pantallas)", usdPrice: 9.99 },
             { name: "Gift Card $15 USD", usdPrice: 15.00 },
             { name: "Gift Card $25 USD", usdPrice: 25.00 }
         ]
@@ -171,9 +176,9 @@ const baseCatalog = [
         category: "streaming",
         logo: "logo-disney.png",
         packages: [
-            { name: "Perfil Estándar 1 Mes", usdPrice: 3.00 },
-            { name: "Perfil Premium 1 Mes", usdPrice: 4.00 },
-            { name: "Cuenta Completa 1 Mes", usdPrice: 8.50 }
+            { name: "Perfil Estándar 1 Mes", usdPrice: 2.99 },
+            { name: "Perfil Premium 1 Mes", usdPrice: 3.99 },
+            { name: "Cuenta Completa 1 Mes", usdPrice: 7.99 }
         ]
     },
     {
@@ -182,8 +187,8 @@ const baseCatalog = [
         category: "streaming",
         logo: "logo-primevideo.png",
         packages: [
-            { name: "Perfil 1 Mes", usdPrice: 1.50 },
-            { name: "Cuenta Completa 1 Mes", usdPrice: 2.50 }
+            { name: "Perfil 1 Mes", usdPrice: 1.49 },
+            { name: "Cuenta Completa 1 Mes", usdPrice: 2.49 }
         ]
     },
     {
@@ -192,8 +197,8 @@ const baseCatalog = [
         category: "streaming",
         logo: "logo-hbomax.png",
         packages: [
-            { name: "Perfil 1 Mes", usdPrice: 3.00 },
-            { name: "Cuenta Completa 1 Mes", usdPrice: 7.00 }
+            { name: "Perfil 1 Mes", usdPrice: 2.99 },
+            { name: "Cuenta Completa 1 Mes", usdPrice: 6.99 }
         ]
     },
     {
@@ -202,8 +207,8 @@ const baseCatalog = [
         category: "streaming",
         logo: "logo-crunchyroll.png",
         packages: [
-            { name: "Perfil Fan 1 Mes", usdPrice: 2.00 },
-            { name: "Cuenta Mega Fan 1 Mes", usdPrice: 3.50 }
+            { name: "Perfil Fan 1 Mes", usdPrice: 1.99 },
+            { name: "Cuenta Mega Fan 1 Mes", usdPrice: 3.49 }
         ]
     },
     {
@@ -212,9 +217,9 @@ const baseCatalog = [
         category: "streaming",
         logo: "logo-spotify.png",
         packages: [
-            { name: "Plan Individual 1 Mes", usdPrice: 3.00 },
-            { name: "Plan Duo 1 Mes", usdPrice: 4.50 },
-            { name: "Plan Familiar 1 Mes", usdPrice: 6.00 }
+            { name: "Plan Individual 1 Mes", usdPrice: 2.99 },
+            { name: "Plan Duo 1 Mes", usdPrice: 3.99 },
+            { name: "Plan Familiar 1 Mes", usdPrice: 5.99 }
         ]
     },
     {
@@ -223,21 +228,19 @@ const baseCatalog = [
         category: "streaming",
         logo: "logo-youtube.png",
         packages: [
-            { name: "Plan Individual 1 Mes", usdPrice: 3.00 },
-            { name: "Plan Familiar 1 Mes", usdPrice: 6.00 }
+            { name: "Plan Individual 1 Mes", usdPrice: 2.99 },
+            { name: "Plan Familiar 1 Mes", usdPrice: 5.99 }
         ]
     }
 ];
 
 let cart = [];
 
-// Variables DOM global
 let productsGrid, cartBtn, closeCart, cartSidebar, overlay;
 let cartCount, cartItemsContainer, cartTotalElement, checkoutBtn;
 let filterBtns, checkoutModal, closeModal, orderForm;
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Inicializar elementos del DOM
     productsGrid = document.getElementById('productsGrid');
     cartBtn = document.getElementById('cartBtn');
     closeCart = document.getElementById('closeCart');
@@ -263,11 +266,11 @@ function displayProducts(items) {
         card.classList.add('product-card');
         
         let optionsHTML = product.packages.map((pkg, index) => {
-            const nioPrice = (pkg.usdPrice * EXCHANGE_RATE).toFixed(2);
-            return `<option value="${index}">${pkg.name} - C$ ${nioPrice} NIO</option>`;
+            const nioPrice = usdToNio(pkg.usdPrice);
+            return `<option value="${index}">${pkg.name} - C$ ${nioPrice}.00 NIO</option>`;
         }).join('');
 
-        const initialPrice = (product.packages[0].usdPrice * EXCHANGE_RATE).toFixed(2);
+        const initialPrice = usdToNio(product.packages[0].usdPrice);
 
         card.innerHTML = `
             <div>
@@ -285,17 +288,15 @@ function displayProducts(items) {
                 </div>
             </div>
             <div>
-                <div class="product-price" id="price-${product.id}">C$ ${initialPrice} NIO</div>
+                <div class="product-price" id="price-${product.id}">C$ ${initialPrice}.00 NIO</div>
                 <button class="add-to-cart" data-id="${product.id}">Añadir al Carrito</button>
             </div>
         `;
         productsGrid.appendChild(card);
 
-        // Event listener seguro para el selector de paquetes
         const selectElem = card.querySelector(`#select-${product.id}`);
         selectElem.addEventListener('change', () => updateCardPrice(product.id));
 
-        // Event listener seguro para el botón
         const btnElem = card.querySelector('.add-to-cart');
         btnElem.addEventListener('click', () => addToCartFromCard(product.id));
     });
@@ -307,8 +308,8 @@ function updateCardPrice(productId) {
     const selectedPkg = product.packages[select.value];
     const priceDisplay = document.getElementById(`price-${productId}`);
     
-    const nioPrice = (selectedPkg.usdPrice * EXCHANGE_RATE).toFixed(2);
-    priceDisplay.textContent = `C$ ${nioPrice} NIO`;
+    const nioPrice = usdToNio(selectedPkg.usdPrice);
+    priceDisplay.textContent = `C$ ${nioPrice}.00 NIO`;
 }
 
 function addToCartFromCard(productId) {
@@ -316,7 +317,7 @@ function addToCartFromCard(productId) {
     const select = document.getElementById(`select-${productId}`);
     const selectedPkg = product.packages[select.value];
 
-    const itemNioPrice = selectedPkg.usdPrice * EXCHANGE_RATE;
+    const itemNioPrice = usdToNio(selectedPkg.usdPrice);
     const cartItemId = `${product.id}-${select.value}`;
 
     const existing = cart.find(item => item.cartItemId === cartItemId);
@@ -361,7 +362,7 @@ function updateCartUI() {
             <div>
                 <h4>${item.gameName}</h4>
                 <small>${item.packageName}</small><br>
-                <small style="color:var(--primary)">C$ ${item.nioPrice.toFixed(2)} x ${item.quantity}</small>
+                <small style="color:var(--primary)">C$ ${item.nioPrice}.00 x ${item.quantity}</small>
             </div>
             <button class="remove-btn" data-cartid="${item.cartItemId}" style="background:none; border:none; color:#ff4d4d; cursor:pointer;">
                 <i class="fa-solid fa-trash"></i>
@@ -369,12 +370,11 @@ function updateCartUI() {
         `;
         cartItemsContainer.appendChild(cartItem);
 
-        // Event listener para eliminar del carrito
         const removeBtn = cartItem.querySelector('.remove-btn');
         removeBtn.addEventListener('click', () => removeFromCart(item.cartItemId));
     });
 
-    cartTotalElement.textContent = `C$ ${totalNIO.toFixed(2)} NIO`;
+    cartTotalElement.textContent = `C$ ${totalNIO}.00 NIO`;
 }
 
 function removeFromCart(cartItemId) {
@@ -448,7 +448,7 @@ function setupEventListeners() {
         message += `*DETALLES DEL PRODUCTO:*\n`;
 
         cart.forEach(item => {
-            message += `- ${item.gameName} [${item.packageName}] (Cant: ${item.quantity}) - C$ ${(item.nioPrice * item.quantity).toFixed(2)} NIO\n`;
+            message += `- ${item.gameName} [${item.packageName}] (Cant: ${item.quantity}) - C$ ${(item.nioPrice * item.quantity)}.00 NIO\n`;
         });
 
         message += `\n*TOTAL A PAGAR:* ${cartTotalElement.textContent}`;
@@ -462,4 +462,4 @@ function setupEventListeners() {
         closeModalWindow();
         orderForm.reset();
     });
-}
+             }
